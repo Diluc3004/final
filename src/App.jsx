@@ -47,6 +47,11 @@ function App() {
   const [mostrarImagen, setMostrarImagen] = useState(false);
 
   const audioRef = useRef(null);
+  const popRef = useRef(null);
+  const huhRef = useRef(null);
+  const buttonRef = useRef(null);
+  const countRef = useRef(null);
+  const quieresRef = useRef(null);
 
   // 🎵 Configurar la reproducción automática con mute al inicio
   useEffect(() => {
@@ -254,7 +259,7 @@ function App() {
       <audio ref={buttonRef} src="final/sounds/button.mp3" />
       <audio ref={countRef} src="final/sounds/count.mp3" />
       <audio ref={quieresRef} src="final/sounds/quieres.mp3" />
-      
+
           <a target="_blank">
             <img src={corazonRojo} className="logo" alt="Vite logo" />
           </a>
