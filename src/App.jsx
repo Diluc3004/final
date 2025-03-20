@@ -48,33 +48,51 @@ function App() {
 
   const audioRef = useRef(null);
 
+  // 🎵 Configurar la reproducción automática con mute al inicio
   useEffect(() => {
-    const audioElement = audioRef.current;
-
-    audioElement.volume = 0.2; // 🔉 Establece el volumen (valores entre 0.0 y 1.0)
-  
-    const playAudio = () => {
-      if (screen !== 'final') {
-        audioElement.play().catch((error) => {
-          console.warn('El navegador bloqueó la reproducción automática:', error);
+    const playMutedAudio = (audioElement) => {
+      if (audioElement) {
+        audioElement.muted = true; // 🔇 Inicia en mute
+        audioElement.play().then(() => {
+          setTimeout(() => {
+            audioElement.muted = false; // 🔊 Activa el sonido después de 500ms
+          }, 500);
+        }).catch((error) => {
+          console.error("Error al reproducir el audio:", error);
         });
-      } else {
-        audioElement.pause(); // 🔇 Detiene la música si la pantalla es "final"
-        audioElement.currentTime = 0; // 🔄 Reinicia el audio para que empiece desde el inicio la próxima vez
       }
     };
-  
-    // Intentar reproducir al cargar
+
+    playMutedAudio(audioRef.current);
+    playMutedAudio(popRef.current);
+    playMutedAudio(huhRef.current);
+    playMutedAudio(buttonRef.current);
+    playMutedAudio(countRef.current);
+    playMutedAudio(quieresRef.current);
+  }, []);
+
+  // 🎵 Control de la música de fondo (golden.mp3)
+  useEffect(() => {
+    const audioElement = audioRef.current;
+    audioElement.volume = 0.2;
+
+    const playAudio = () => {
+      if (screen !== 'final') {
+        audioElement.play().catch(() => {});
+      } else {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+      }
+    };
+
     playAudio();
-  
-    // Intentar reproducir nuevamente al hacer clic en cualquier parte
     window.addEventListener('click', playAudio);
-  
+
     return () => {
       window.removeEventListener('click', playAudio);
       audioElement.pause();
     };
-  }, [screen]); // 👈 Ahora el efecto depende de `screen`
+  }, [screen]);
   
   
 
@@ -179,25 +197,17 @@ function App() {
     setShowCodePopup(true);
   };
 
+  // 🎵 Sonidos al abrir popups
   useEffect(() => {
-    if(showPopup){
-      const audio = new Audio('/sounds/pop.mp3');
-      audio.play();
-    }
+    if (showPopup) popRef.current.play();
   }, [showPopup]);
 
   useEffect(() => {
-    if(showSecondPopup){
-      const audio = new Audio('/sounds/huh.mp3');
-      audio.play();
-    }
+    if (showSecondPopup) huhRef.current.play();
   }, [showSecondPopup]);
 
   useEffect(() => {
-    if(showThirdPopup){
-      const audio = new Audio('/sounds/button.mp3');
-      audio.play();
-    }
+    if (showThirdPopup) buttonRef.current.play();
   }, [showThirdPopup]);
 
 
@@ -216,18 +226,18 @@ function App() {
     }
   }, [screen, timeLeft]);
 
-  // Sonido de regresiva
+  // 🎵 Sonido de cuenta regresiva
   useEffect(() => {
     if (screen === 'siguiente8' && timeLeft > 0) {
-      const beep = new Audio('/sounds/count.mp3');
+      const beep = countRef.current;
       beep.play();
     }
   }, [timeLeft, screen]);
 
+  // 🎵 Sonido de final
   useEffect(() => {
-    if(screen === 'final'){
-      const song = new Audio('/sounds/quieres.mp3');
-      song.play();
+    if (screen === 'final') {
+      quieresRef.current.play();
     }
   }, [screen]);
   
@@ -237,6 +247,14 @@ function App() {
     {screen === 'inicio' && (
       <>
         <div>
+          {/* Audios ocultos */}
+      <audio ref={audioRef} src="final/sounds/golden.mp3" loop />
+      <audio ref={popRef} src="final/sounds/pop.mp3" />
+      <audio ref={huhRef} src="final/sounds/huh.mp3" />
+      <audio ref={buttonRef} src="final/sounds/button.mp3" />
+      <audio ref={countRef} src="final/sounds/count.mp3" />
+      <audio ref={quieresRef} src="final/sounds/quieres.mp3" />
+      
           <a target="_blank">
             <img src={corazonRojo} className="logo" alt="Vite logo" />
           </a>
@@ -304,7 +322,7 @@ function App() {
     )}
 
     {/* Elemento de audio oculto que no se interrumpe */}
-    <audio ref={audioRef} src="/sounds/golden.mp3" autoPlay loop />
+    <audio ref={audioRef} src="final/sounds/golden.mp3" autoPlay loop />
 
     
     {screen === 'siguiente' && (
