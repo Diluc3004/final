@@ -181,21 +181,21 @@ function App() {
 
   useEffect(() => {
     if(showPopup){
-      const audio = new Audio('final/sounds/pop.mp3');
+      const audio = new Audio('https://diluc3004.github.io/final/sounds/pop.mp3');
       audio.play();
     }
   }, [showPopup]);
 
   useEffect(() => {
     if(showSecondPopup){
-      const audio = new Audio('final/sounds/huh.mp3');
+      const audio = new Audio('https://diluc3004.github.io/final/sounds/huh.mp3');
       audio.play();
     }
   }, [showSecondPopup]);
 
   useEffect(() => {
     if(showThirdPopup){
-      const audio = new Audio('final/sounds/button.mp3');
+      const audio = new Audio('https://diluc3004.github.io/final/sounds/button.mp3');
       audio.play();
     }
   }, [showThirdPopup]);
@@ -219,14 +219,14 @@ function App() {
   // Sonido de regresiva
   useEffect(() => {
     if (screen === 'siguiente8' && timeLeft > 0) {
-      const beep = new Audio('final/sounds/count.mp3');
+      const beep = new Audio('https://diluc3004.github.io/final/sounds/count.mp3');
       beep.play();
     }
   }, [timeLeft, screen]);
 
   useEffect(() => {
     if(screen === 'final'){
-      const song = new Audio('final/sounds/quieres.mp3');
+      const song = new Audio('https://diluc3004.github.io/final/sounds/quieres.mp3');
       song.play();
     }
   }, [screen]);
@@ -304,7 +304,7 @@ function App() {
     )}
 
     {/* Elemento de audio oculto que no se interrumpe */}
-    <audio ref={audioRef} src="final/sounds/golden.mp3" autoPlay loop />
+    <audio ref={audioRef} src="https://diluc3004.github.io/final/sounds/golden.mp3" autoPlay loop />
 
     
     {screen === 'siguiente' && (
