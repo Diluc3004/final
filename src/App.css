@@ -1,0 +1,332 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo {
+  height: 4em;
+  padding: 1em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #ff8364aa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.diluc {
+  height: 15em;
+  padding: 1em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.diluc:hover{
+  filter: drop-shadow(0 0 2em #fbb861aa);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding-top: 1em;
+}
+
+.read-the-docs {
+  color: #999999;
+}
+
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Asegura que esté arriba */
+}
+
+.popup {
+  background-color: white;
+  color: #333;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  animation: zoomIn 0.4s ease;
+
+  display: flex;
+  flex-direction: column;  /* Pone los elementos en columna */
+  align-items: center;     /* Centra horizontalmente todo */
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #6b46c1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.next {
+  margin-top: 3em;
+  padding: 10px 20px;
+  background-color: #3ea6cf;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #9f7aea;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+.jugo {
+  height: 6em;
+  padding: 1em;
+}
+
+.chibi {
+  height: 12em;
+  padding: 1em;
+}
+
+.numero {
+  height: 3em;
+  padding-bottom: 0.5em;
+}
+
+.code-input {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+}
+
+.code-input-field {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.todo {
+  display: flex; /* Para alinear contenido en columna o fila */
+  flex-direction: column; /* Asegura que los elementos se alineen verticalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  height: 100vh; /* Asegura que ocupe toda la altura de la ventana del navegador */
+  width: 100vh;
+  padding: 0px; /* Añade algo de espacio alrededor del contenido */
+  background-color: #ffefef; /* Color de fondo por defecto */
+  text-align: center; /* Centra el texto */
+  color: #360404; /* Color del texto */
+  font-family: 'Arial', sans-serif; /* Asegura una tipografía clara y legible */
+}
+
+.partner{
+  padding: 2em;
+  background-color: #ffffff;
+  border-radius: 2em;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.fondo{
+  padding: 1.5em;
+  background-color: #f58d9e;
+  border-radius: 2em;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.ventajasB {
+  margin-top: 45px;
+  margin-right: 20px;
+  padding: 10px 20px;
+  background-color: #6ed161;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ventajasB:hover{
+  background-color: #3ea82f;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+.desventajasB {
+  margin-top: 45px;
+  margin-left: 20px;
+  padding: 10px 20px;
+  background-color: #ce5858;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.desventajasB:hover{
+  background-color: #af3333;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+.dar{
+  margin-top: 30px;
+  padding: 20px 30px;
+  color: white;
+  background-color: #e72052;
+}
+
+.dar:hover{
+  background-color: #fa3c3c;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+.uss{
+  height: 25em;
+}
+
+.cuenta {
+  display: flex; /* Para alinear contenido en columna o fila */
+  flex-direction: column; /* Asegura que los elementos se alineen verticalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+}
+
+.correcto {
+  color:#1b6911;
+}
+
+.regresiva {
+  color:#ffffff;
+  padding: 0.5em;
+  background-color: #c21d41;
+  align-items: center;
+  width: 1.2em;
+  border-radius: 5em;
+  box-shadow: 0 4px 8px rgba(46, 46, 46, 0.2);
+}
+
+.lasventajas{
+  text-align: left;
+}
+
+.lasdesventajas {
+  text-align: left;
+}
+
+.buttonCerrar {
+  font-size: 10px;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #c6adff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttonSi{
+  font-size: 30px;
+  margin-top: 2px;
+  padding: 15px 20px;
+  background-color: #f8299b;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttonSi:hover{
+  background-color: #ffb4b4;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+.buttonNo{
+  font-size: 30px;
+  margin-top: 20px;
+  padding: 15px 20px;
+  background-color: #6b79c7;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttonNo:hover{
+  background-color: #b4c8ff;
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+.ninos {
+  font-size: 10px;
+  color: #bebebe;
+}
+
+.imagen-container img {
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.s21 {
+  color: #f7e01a;
+}
+
+.s31 {
+  color: #ac0b56;
+}
+
+.s41 {
+  color: #ec22dc;
+}
