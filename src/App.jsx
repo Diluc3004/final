@@ -47,57 +47,34 @@ function App() {
   const [mostrarImagen, setMostrarImagen] = useState(false);
 
   const audioRef = useRef(null);
-  const popRef = useRef(null);
-  const huhRef = useRef(null);
-  const buttonRef = useRef(null);
-  const countRef = useRef(null);
-  const quieresRef = useRef(null);
 
-  // 🎵 Configurar la reproducción automática con mute al inicio
-  useEffect(() => {
-    const playMutedAudio = (audioElement) => {
-      if (audioElement) {
-        audioElement.muted = true; // 🔇 Inicia en mute
-        audioElement.play().then(() => {
-          setTimeout(() => {
-            audioElement.muted = false; // 🔊 Activa el sonido después de 500ms
-          }, 500);
-        }).catch((error) => {
-          console.error("Error al reproducir el audio:", error);
-        });
-      }
-    };
-
-    playMutedAudio(audioRef.current);
-    playMutedAudio(popRef.current);
-    playMutedAudio(huhRef.current);
-    playMutedAudio(buttonRef.current);
-    playMutedAudio(countRef.current);
-    playMutedAudio(quieresRef.current);
-  }, []);
-
-  // 🎵 Control de la música de fondo (golden.mp3)
   useEffect(() => {
     const audioElement = audioRef.current;
-    audioElement.volume = 0.2;
 
+    audioElement.volume = 0.2; // 🔉 Establece el volumen (valores entre 0.0 y 1.0)
+  
     const playAudio = () => {
       if (screen !== 'final') {
-        audioElement.play().catch(() => {});
+        audioElement.play().catch((error) => {
+          console.warn('El navegador bloqueó la reproducción automática:', error);
+        });
       } else {
-        audioElement.pause();
-        audioElement.currentTime = 0;
+        audioElement.pause(); // 🔇 Detiene la música si la pantalla es "final"
+        audioElement.currentTime = 0; // 🔄 Reinicia el audio para que empiece desde el inicio la próxima vez
       }
     };
-
+  
+    // Intentar reproducir al cargar
     playAudio();
+  
+    // Intentar reproducir nuevamente al hacer clic en cualquier parte
     window.addEventListener('click', playAudio);
-
+  
     return () => {
       window.removeEventListener('click', playAudio);
       audioElement.pause();
     };
-  }, [screen]);
+  }, [screen]); // 👈 Ahora el efecto depende de `screen`
   
   
 
@@ -202,17 +179,25 @@ function App() {
     setShowCodePopup(true);
   };
 
-  // 🎵 Sonidos al abrir popups
   useEffect(() => {
-    if (showPopup) popRef.current.play();
+    if(showPopup){
+      const audio = new Audio('final/sounds/pop.mp3');
+      audio.play();
+    }
   }, [showPopup]);
 
   useEffect(() => {
-    if (showSecondPopup) huhRef.current.play();
+    if(showSecondPopup){
+      const audio = new Audio('final/sounds/huh.mp3');
+      audio.play();
+    }
   }, [showSecondPopup]);
 
   useEffect(() => {
-    if (showThirdPopup) buttonRef.current.play();
+    if(showThirdPopup){
+      const audio = new Audio('final/sounds/button.mp3');
+      audio.play();
+    }
   }, [showThirdPopup]);
 
 
@@ -231,18 +216,18 @@ function App() {
     }
   }, [screen, timeLeft]);
 
-  // 🎵 Sonido de cuenta regresiva
+  // Sonido de regresiva
   useEffect(() => {
     if (screen === 'siguiente8' && timeLeft > 0) {
-      const beep = countRef.current;
+      const beep = new Audio('final/sounds/count.mp3');
       beep.play();
     }
   }, [timeLeft, screen]);
 
-  // 🎵 Sonido de final
   useEffect(() => {
-    if (screen === 'final') {
-      quieresRef.current.play();
+    if(screen === 'final'){
+      const song = new Audio('final/sounds/quieres.mp3');
+      song.play();
     }
   }, [screen]);
   
@@ -252,14 +237,6 @@ function App() {
     {screen === 'inicio' && (
       <>
         <div>
-          {/* Audios ocultos */}
-      <audio ref={audioRef} src="final/sounds/golden.mp3" loop />
-      <audio ref={popRef} src="final/sounds/pop.mp3" />
-      <audio ref={huhRef} src="final/sounds/huh.mp3" />
-      <audio ref={buttonRef} src="final/sounds/button.mp3" />
-      <audio ref={countRef} src="final/sounds/count.mp3" />
-      <audio ref={quieresRef} src="final/sounds/quieres.mp3" />
-
           <a target="_blank">
             <img src={corazonRojo} className="logo" alt="Vite logo" />
           </a>
