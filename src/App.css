@@ -65,6 +65,8 @@
   text-align: center;
   width: 80%;
   max-width: 400px;
+  max-height: 80vh; /* Altura máxima del popup */
+  overflow-y: auto;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   animation: zoomIn 0.4s ease;
 
